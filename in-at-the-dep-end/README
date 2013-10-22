@@ -1,3 +1,10 @@
 Source code for the post
 http://matcross.wordpress.com/2012/10/30/in-at-the-dep-end/
-about Fortran module-dependency analysis.
+about Fortran module-dependency analysis:
+
+generate_fortran.py
+  generates the input Fortran source files that demonstrate a complex
+  tree of module dependencies;
+Makefile
+  the GNU makefile for building the Fortran source.
+  Analysis of module dependencies happens automatically.  
