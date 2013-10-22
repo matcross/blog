@@ -1,4 +1,4 @@
 blog
 ====
 
-Code from Blog o'Mat
+Source code from posts featured on Blog o'Mat (http://matcross.wordpress.com).
