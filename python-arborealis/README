@@ -1,0 +1,6 @@
+Source code for the post
+http://matcross.wordpress.com/2013/01/02/python-arborealis/
+about a Python implementation of a k-ary circularly linked tree.
+
+tree.py
+  the class for nodes in the tree, some support functions and example usage.

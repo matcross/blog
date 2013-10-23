@@ -8,4 +8,7 @@ in-at-the-dep-end/
 	README
 	generate_fortran.py
 	Makefile
+python-arborealis/
+        README
+        tree.py
 </pre>
