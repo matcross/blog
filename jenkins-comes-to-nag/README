@@ -1,0 +1,9 @@
+Source code for the post
+http://matcross.wordpress.com/2013/07/15/jenkins-comes-to-nag/
+showing a Jenkins backup script inspired by
+http://jenkins-ci.org/content/keeping-your-configuration-and-data-subversion
+
+backup.csh
+  the script.
+  This takes one optional command-line argument: the commit message to use if
+  there are changes in the working copy.
