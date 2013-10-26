@@ -1,0 +1,6 @@
+Source code for the post
+http://matcross.wordpress.com/2013/10/26/customizing-svn-diff
+demonstrating how to colorize and filter output from svn diff.
+
+svndiff.sh
+  the 'customized' diff command pipeline.

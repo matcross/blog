@@ -4,6 +4,9 @@ blog
 Source code from posts featured on Blog o'Mat (http://matcross.wordpress.com):
 
 <pre>
+customizing-svn-diff
+  README
+  svndiff.sh
 in-at-the-dep-end/
   README
   generate_fortran.py
