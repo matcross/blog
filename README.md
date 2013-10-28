@@ -1,8 +1,8 @@
 blog
 ====
 
-Source code from posts featured on Blog o'Mat (http://matcross.wordpress.com)
-and for posts I've published on the NAG Blog (http://blog.nag.com):
+Source code from posts featured on <a href="http://matcross.wordpress.com">Blog o'Mat</a>
+and for posts I've published on the <a href="http://blog.nag.com">NAG Blog</a>:
 
 <pre>
 customizing-svn-diff/
