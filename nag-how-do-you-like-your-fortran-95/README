@@ -1,0 +1,8 @@
+Source code for the NAG Blog post
+http://blog.nag.com/2010/01/how-do-you-like-your-fortran-95.html
+discussing possible Fortran 95 interfaces to the NAG Fortran Library.
+
+nag_multi_normal_f90.f90
+  pseudocode for a simple interface with Optional and assumed-shape arguments;
+nag_sparse_nlp_opt_f95.f90
+  pseudocode for a more-complicated interface having derived-type arguments.
