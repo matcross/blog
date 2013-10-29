@@ -1,0 +1,14 @@
+Source code for the NAG Blog post
+http://blog.nag.com/2010/02/loading-dtds-using-dom-in-python.html
+discussing how to expand XML entities using Python.
+
+times.dtd
+times.xml
+  the basic entity definition and XML fragment referencing it;
+times.py
+  a script to process the XML using xml.dom.minidom with no entity expansion;
+times2.py
+  a script to process the XML using xml.dom.minidom with a pass through
+  xmllint to handle entity expansion;
+times3.py
+  a script to process the XML using lxml with entity expansion.
