@@ -1,0 +1,6 @@
+Source code for the NAG Blog post
+http://blog.nag.com/2010/10/source-level-debugging-of-python-in.html
+discussing how to enable M-x pdb in emacs for debugging Python code.
+
+pdb
+  a shell script wrapping a Python pdb call.

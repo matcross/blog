@@ -1,0 +1,4 @@
+#!/bin/sh
+python=python3
+pdb_path=`${python} -c "import pdb, sys; sys.stdout.write(pdb.__file__ + '\n')"`
+exec ${python} ${pdb_path} "$@" 
