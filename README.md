@@ -15,6 +15,9 @@ in-at-the-dep-end/
 jenkins-comes-to-nag/
   README
   backup.csh
+nag-hey-you-sass-that-hoopy-fortran/
+  README
+  str_read.f90
 nag-how-do-you-like-your-fortran-95/
   README
   nag_multi_normal_f90.f90

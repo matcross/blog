@@ -1,0 +1,8 @@
+Source code for the NAG Blog post
+http://blog.nag.com/2010/07/hey-you-sass-that-hoopy-fortran.html
+discussing the kinds of hoops that have to be jumped through when trying to
+produce portable Fortran code.
+
+str_read.f90
+  a simple test program demonstrating the behaviour of the Read statement on
+  an extreme value.
