@@ -1,0 +1,7 @@
+Source code for the post
+http://matcross.wordpress.com/2013/10/30/object-oriented-python-interfaces-to-nag-routines/
+about ideas for a Pythonic interface to the NAG (Fortran) Library.
+
+lambertw.py
+  a set of NAG exception classes, classes for a wrapper to the Lambert W
+  function routine c05bb, and some example usage.

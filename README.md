@@ -26,6 +26,9 @@ nag-loading-dtds-using-dom-in-python/
   times.py
   times2.py
   times3.py
+object-oriented-python-interfaces-to-nag-routines/
+  README
+  lambertw.py
 python-arborealis/
   README
   tree.py
