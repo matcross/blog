@@ -34,24 +34,24 @@ class NagFunction(object):
     "A root NAG function class."
     from ctypes import c_int, Structure
     # The default error-handling mode for each (Fortran) Library call:
-    ifail = c_int(1)
+    ifail_default = 1
 
     class Complex(Structure):
         "A class to emulate a complex value using ctypes."
         from ctypes import c_double
         _fields_ = [("re", c_double), ("im", c_double)]
 
-    def check_fortran_ifail(self):
+    def check_fortran_ifail(self, ifail):
         """
         Takes action based on the Fortran ifail value returned by a NAG Fortran
         Library call.
         """
-        if (self.ifail.value == 0):
+        if (ifail == 0):
             return
-        elif (self.ifail.value == -399):
-            raise NagLicenceError(self.__class__.__name__, self.ifail.value)
+        elif (ifail == -399):
+            raise NagLicenceError(self.__class__.__name__, ifail)
         else:
-            raise NagFunctionError(self.__class__.__name__, self.ifail.value)
+            raise NagFunctionError(self.__class__.__name__, ifail)
 
     def check_type(self,
                    argument,
@@ -86,16 +86,17 @@ class NagRootsLambertWComplex(NagFunction):
         z_f = self.Complex(z.real, z.imag)
         w_f = self.Complex()
         resid_f = c_double()
+        ifail = c_int(self.ifail_default)
         self.fcn_h(byref(branch_f),
                    byref(offset_f),
                    byref(z_f),
                    byref(w_f),
                    byref(resid_f),
-                   byref(self.ifail))
-        self.check_fortran_ifail()
+                   byref(ifail))
+        self.check_fortran_ifail(ifail.value)
         return complex(w_f.re, w_f.im), resid_f.value
 
-def c_example():
+def example():
     """
     Calls the Lambert W wrapper for a range of input values and prints the
     results.
@@ -128,4 +129,4 @@ def c_example():
                          '. residual = ' + format(resid, '15.8e') + '\n')
 
 if (__name__=='__main__'):
-    c_example()
+    example()
