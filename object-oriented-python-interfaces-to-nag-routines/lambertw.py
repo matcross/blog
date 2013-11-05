@@ -96,7 +96,7 @@ class NagRootsLambertWComplex(NagFunction):
         self.check_fortran_ifail(ifail.value)
         return complex(w_f.re, w_f.im), resid_f.value
 
-def example():
+def example(nag_lambertw):
     """
     Calls the Lambert W wrapper for a range of input values and prints the
     results.
@@ -109,10 +109,7 @@ def example():
                         format(z.imag, '15.8e'),
                         ')'])
 
-    from ctypes import cdll
     import sys
-    naglib = '/path/to/libnag_nag.so'
-    naglib_h = cdll.LoadLibrary(naglib)
     branch = 0
     offset = False
     sys.stdout.write('Lambert W function values for branch = ' + str(branch) +
@@ -123,10 +120,66 @@ def example():
             complex(4.5, -0.1),
             complex(6.0, 6.0)
     ]:
-        w, resid = NagRootsLambertWComplex(naglib_h).evaluate(branch, offset, z)
+        w, resid = nag_lambertw(branch, offset, z)
         sys.stdout.write('z = ' + format_complex(z) +
                          ', W(z) = ' + format_complex(w) +
                          '. residual = ' + format(resid, '15.8e') + '\n')
 
+def plot(nag_lambertw):
+    """
+    Uses matplotlib to plot some branches of the imaginary part of the
+    Lambert W function.
+    """
+    def get_mesh(npts):
+        """
+        Sets up the npts-point input mesh for plotting, avoiding the branch cut.
+        """
+        import numpy as np
+        lower = -1
+        upper = -lower
+        threshold = 0.001
+        xpts1, ypts1 = np.meshgrid(np.linspace(lower, upper, npts),
+                                   np.linspace(lower, -threshold, npts))
+        xpts2, ypts2 = np.meshgrid(np.linspace(lower, upper, npts),
+                                   np.linspace(threshold, upper, npts))
+        return xpts1, ypts1, xpts2, ypts2
+
+    def plot_the_surface(branch, xpts, ypts):
+        """
+        Makes a surface plot of the imaginary part of the Lambert W function
+        over the supplied input points.
+        """
+        from matplotlib import cm
+        import numpy as np
+        w_imag = np.empty((xpts.size, 1))
+        for i in range(xpts.size):
+            try:
+                w_imag[i] = nag_lambertw(branch, False,
+                                         complex(xpts.flatten()[i],
+                                                 ypts.flatten()[i]))[0].imag
+            except NagFunctionError:
+                pass
+        cmaps = {-1: cm.Blues, 0: cm.Greens, 1: cm.Oranges}
+        axes.plot_surface(xpts, ypts, w_imag.reshape(xpts.shape),
+                          cmap=cmaps[branch])
+
+    from mpl_toolkits.mplot3d import Axes3D
+    import matplotlib.pyplot as plt
+    fig = plt.figure()
+    axes = Axes3D(fig)
+    npts = 100
+    xpts1, ypts1, xpts2, ypts2 = get_mesh(npts)
+
+    for branch in [-1, 0, 1]:
+        plot_the_surface(branch, xpts1, ypts1)
+        plot_the_surface(branch, xpts2, ypts2)
+
+    fig.suptitle('Imag(W)')
+    plt.show()
+
 if (__name__=='__main__'):
-    example()
+    from ctypes import cdll
+    NAGLIB = '/path/to/libnag_nag.so'
+    C05BB = NagRootsLambertWComplex(cdll.LoadLibrary(NAGLIB)).evaluate
+    example(C05BB)
+    plot(C05BB)
